@@ -8,6 +8,8 @@
   
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&amp;subset=cyrillic" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-3.2.1.min.js"></script>
+
 </head>
 <body>
 	<header>
@@ -44,11 +46,11 @@
 					<img src="img/log6.png"  alt="6"">
 			</div>
 			<div class="header-arrow">
-				<a class="header-arrow--img" href="#"></a>
+				<a  class="header-arrow--img" id="arrow" href="#video"></a>
 			</div>
 		</div>
 	</header>
-	<div class="video">
+	<div class="video" id="video">
 		<div class="container">
 			<div class="video__wrapper">
 				<div class="video__frame">
@@ -145,6 +147,23 @@
 
 
 
-  
+   <script>
+	$(document).ready(function(){
+	$("#arrow").on("click", function (event) {
+		//отменяем стандартную обработку нажатия по ссылке
+		event.preventDefault();
+
+		//забираем идентификатор бока с атрибута href
+		var id  = $(this).attr('href'),
+
+		//узнаем высоту от начала страницы до блока на который ссылается якорь
+			top = $(id).offset().top;
+		
+		//анимируем переход на расстояние - top за 1500 мс
+		$('body,html').animate({scrollTop: top}, 1500);
+	});
+	});
+      
+   </script>
 </body>
 </html>
